@@ -16,3 +16,23 @@ export const markTodoAsCompleted = (text) => ({
     type: MARK_TODO_AS_COMPLETED,
     payload: { text },
 });
+
+export const REQUEST_ROBOT_PENDING = 'REQUEST_ROBOT_PENDING';
+export const REQUEST_ROBOT_SUCCESS = 'REQUEST_ROBOT_SUCCESS';
+export const REQUEST_ROBOT_FAILED = 'REQUEST_ROBOT_FAILED';
+
+export const requestRobots = () => (dispatch) => {
+    dispatch({ type: REQUEST_ROBOT_PENDING });
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => dispatch({ type: REQUEST_ROBOT_SUCCESS, payload: data }))
+    .catch(error => dispatch({ type: REQUEST_ROBOT_FAILED }));
+}
+
+export const CHANGE_SEARCH_FIELD = 'REQUEST_CHANGE_SEARCH_FIELDROBOT_FAILED';
+export const setSearchField = (text) => ({
+    type: CHANGE_SEARCH_FIELD,
+    payload: text
+
+})
+

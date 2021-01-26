@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import ToDoList from './components/ToDoList';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
+import UserList from './components/UserList';
+import 'tachyons';
 
 const App = () => {
   return (
@@ -10,7 +12,8 @@ const App = () => {
       <div className="App">
         <NavBar />
         <Route exact path="/" component={Home} />
-        <Route path="/to-do-list" component={ToDoList} />
+        <Route exact path="/users" component={UserList} />
+        <Route exact path="/to-do-list" component={ToDoList} />
       </div>
     </BrowserRouter>
   );

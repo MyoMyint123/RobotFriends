@@ -4,6 +4,14 @@ import { createTodo } from '../actions/actions';
 
 const NewToDoForm = ({ todos, onCreatePressed }) => {
     const [inputValue, setInputValue] = useState('');
+
+    const handleKeypress = e => {
+        if (e.keyCode === 13) {
+            onCreatePressed(e.target.value);
+            setInputValue('');
+        }
+    };
+
     return (
         <div className="todo-item-container">
             <div className="ui form">
@@ -15,6 +23,7 @@ const NewToDoForm = ({ todos, onCreatePressed }) => {
                             placeholder="Type your new todo here"
                             value={inputValue}
                             onChange={e => setInputValue(e.target.value)} 
+                            onKeyDown={handleKeypress}
                         />
                         <button 
                             className="new-todo-button ui button"
@@ -36,7 +45,7 @@ const NewToDoForm = ({ todos, onCreatePressed }) => {
 };
     
 const mapStateToProps = state => ({
-    todos: state.todolist,
+    todos: state.todos,
 });
 
 const matDispatchToProps = dispatch => ({

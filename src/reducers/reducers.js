@@ -1,7 +1,15 @@
-import { CREATE_TODO, REMOVE_TODO, MARK_TODO_AS_COMPLETED } from "../actions/actions";
+import { 
+    CREATE_TODO, 
+    REMOVE_TODO, 
+    MARK_TODO_AS_COMPLETED,
+    CHANGE_SEARCH_FIELD,
+    REQUEST_ROBOT_PENDING,
+    REQUEST_ROBOT_SUCCESS,
+    REQUEST_ROBOT_FAILED,    
+} from "../actions/actions";
 
 
-export const todolist = (state = [], action) =>{
+export const todos = (state = [], action) =>{
     // console.log(state)
     const { type, payload } = action;
     switch (type) {
@@ -31,3 +39,35 @@ export const todolist = (state = [], action) =>{
             return state;
     }
 }
+
+export const initialStateRobots = {
+    isPending: false,
+    robots: [],
+    error: ''
+};
+
+export const requestRobots = (state = initialStateRobots, action) => {
+    switch(action.type) {
+        case REQUEST_ROBOT_PENDING:
+            return {...state, isPending: true}
+        case REQUEST_ROBOT_SUCCESS:
+            return {...state, robots: action.payload, isPending: false};
+        case REQUEST_ROBOT_FAILED:
+            return {...state, error: action.payload, isPending: false};        
+        default:
+            return state;
+    }
+};
+
+export const initialStateSearch = {
+    searchField: '',
+};
+
+export const searchRobots = (state = initialStateSearch, action) => {
+    switch(action.type) {
+        case CHANGE_SEARCH_FIELD:
+            return {...state, searchField: action.payload};        
+        default:
+            return state;
+    }
+};

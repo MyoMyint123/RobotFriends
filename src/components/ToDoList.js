@@ -22,7 +22,7 @@ const ToDoList = ({ todos, onRemovePressed, onCompletedPressed }) => {
 }
 
 const mapStateToProps = state => ({ 
-    todos: state.todolist,
+    todos: state.todos,
 });
 
 const mapDispatchToProps = dispatch => ({
