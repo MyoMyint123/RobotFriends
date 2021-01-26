@@ -36,3 +36,15 @@ export const setSearchField = (text) => ({
 
 })
 
+export const REQUEST_ROBOT_DETAIL_PENDING = 'REQUEST_ROBOT_DETAIL_PENDING';
+export const REQUEST_ROBOT_DETAIL_SUCCESS = 'REQUEST_ROBOT_DETAIL_SUCCESS';
+export const REQUEST_ROBOT_DETAIL_FAILED = 'REQUEST_ROBOT_DETAIL_FAILED';
+
+export const requestRobotDetail = (id) => (dispatch) => {
+    dispatch({ type: REQUEST_ROBOT_DETAIL_PENDING });
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+    .then(response => response.json())
+    .then(data => dispatch({ type: REQUEST_ROBOT_DETAIL_SUCCESS, payload: data }))
+    .catch(error => dispatch({ type: REQUEST_ROBOT_DETAIL_FAILED }));
+}
+

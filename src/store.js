@@ -1,11 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { todos, requestRobots, searchRobots } from './reducers/reducers.js';
+import { todos, requestRobots, searchRobots, requestRobotDetail } from './reducers/reducers.js';
 
 const reducers = {
     todos,
     requestRobots,
     searchRobots,
+    requestRobotDetail
 };
 
 const rootReducer = combineReducers(reducers);
