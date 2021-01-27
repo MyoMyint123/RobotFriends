@@ -6,7 +6,7 @@ const NewToDoForm = ({ todos, onCreatePressed }) => {
     const [inputValue, setInputValue] = useState('');
 
     const handleKeypress = e => {
-        if (e.keyCode === 13) {
+        if (e.target.value != '' && e.keyCode === 13) {
             onCreatePressed(e.target.value);
             setInputValue('');
         }
